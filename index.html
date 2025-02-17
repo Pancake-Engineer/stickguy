@@ -1,172 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pancake Engineer Store</title>
-    <style>
-        body {
-            background-color: gray;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        h1 {
-            color: white;
-            margin: 0;
-            padding: 20px;
-        }
-        .header {
-            background-color: red;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            /*  */
-        }
-        .back-button {
-            position: absolute;
-            left: 10px;
-            top: 20px;
-            background-color: #444;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .back-button:hover {
-            background-color: #666;
-        }
-        .menu {
-            background-color: #222;
-            padding: 10px;
-            text-align: center;
-        }
-        .menu button {
-            background-color: #444;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .menu button:hover {
-            background-color: #666;
-        }
-        .content-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            margin-top: 20px;
-            gap: 20px;
-        }
-        .game-container {
-            text-align: center;
-        }
-        iframe {
-            width: 526px;
-            height: 400px;
-            border: none;
-            display: none;
-        }
-        .game-info {
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            width: 400px;
-            display: none;
-            border-radius: 10px;
-        }
-        .game-info img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-        .game-info h2 {
-            margin-top: 0;
-        }
-        .mobile-message {
-            background-color: #ffcc00;
-            color: black;
-            padding: 10px;
-            text-align: center;
-            font-size: 18px;
-            display: none;
-        }
-        .mobile-hidden {
-            display: none;
-        }
-
-        p {
-            color: white;
-        }
-
-        /* Mobile-specific styles */
-        @media (max-width: 800px) {
-            .back-button {
-                position: relative;
-                top: 10px;
-                left: 0;
-                margin: 10px 0;
-                width: 100%;
-                text-align: center;
-                display: block;
-            }
-
-            .header {
-                padding-bottom: 40px; /* Add extra space to avoid overlap with the button */
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stickguy.NET</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* Basic Reset */
+    body {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: blue;
+    }
+    
+    /* Header styling */
+    header {
+      background-color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    /* Logo in the header */
+    header img {
+      height: 50px;
+    }
+    
+    /* Button container in the header */
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .auth-buttons button {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 4px;
+    }
+    
+    /* Main content area */
+    main {
+      padding: 90px 20px 20px; /* Extra top padding to account for the fixed header */
+    }
+    
+    /* Default Landing Page */
+    #landingPage {
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+    }
+    
+    /* Form container (initially hidden) */
+    .form-container {
+      display: none;
+    }
+    
+    .form-container form {
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-container h2 {
+      margin-top: 0;
+    }
+    
+    .form-container label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    
+    .form-container input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    .form-container button[type="submit"] {
+      padding: 10px 15px;
+      border: none;
+      background-color: #28a745;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
+  <!-- Header with Logo and Auth Buttons -->
+  <header>
+    <img src="stickguylogo.png" alt="Stickguy.NET" />
+    <p>Stickguy.NET</p>
+    <div class="auth-buttons">
+      <button id="loginBtn">Login</button>
+      <button id="createAccountBtn">Create Account</button>
+    </div>
+  </header>
 
-    <div class="header">
-        <button class="back-button" onclick="window.location.href='https://www.pancakeengineer.xyz'">Go back to PancakeEngineer.xyz</button>
-        <h1>Pancake Engineer Store</h1>
+  <!-- Main Content Area -->
+  <main>
+    <!-- Default Landing Page Content -->
+    <div id="landingPage">
+      <h1>Welcome to Stickguy.NET!</h1>
+      <p>The ultimate multiplayer web-based survival game! Please login or create an account to get started.</p>
+      <p>Made by Pancake Engineer (www.pancakeengineer.xyz)</p>
     </div>
 
-    <div class="mobile-message" id="mobileMessage">
-        <p>Please switch to a PC for a better shopping experience!</p>
+    <!-- Form Container (hidden by default) -->
+    <div class="form-container">
+      <!-- Login Form -->
+      <form id="loginForm">
+        <h2>Login</h2>
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" name="loginEmail" required />
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required />
+
+        <button type="submit">Login</button>
+      </form>
+
+      <!-- Create Account Form -->
+      <form id="createAccountForm">
+        <h2>Create Account</h2>
+        <label for="signupName">Name:</label>
+        <input type="text" id="signupName" name="signupName" required />
+
+        <label for="signupEmail">Email:</label>
+        <input type="email" id="signupEmail" name="signupEmail" required />
+
+        <label for="signupPassword">Password:</label>
+        <input type="password" id="signupPassword" name="signupPassword" required />
+
+        <button type="submit">Create Account</button>
+      </form>
     </div>
+  </main>
 
-    <div class="menu" id="menuBar">
-        <p>Come back later when I release my first game!</p>
-        <!--<button onclick="loadGame('pizzaboy/cZS7Sv9Dq6', 'Pizzaboy', 'Run your very own Pizzashop inside of Pizzaboy by cooking pizzas to serve customers! Build and design your own Pizzashop to your own liking! The possibilites are endless!', '/Pizzaboy.png')">Pizzaboy</button> --!>
-        <!-- Add more games here -->
-    </div>
+  <!-- JavaScript to toggle between landing page and forms -->
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const createAccountBtn = document.getElementById('createAccountBtn');
+    const landingPage = document.getElementById('landingPage');
+    const formContainer = document.querySelector('.form-container');
+    const loginForm = document.getElementById('loginForm');
+    const createAccountForm = document.getElementById('createAccountForm');
 
-    <div class="content-container">
-        <div class="game-container">
-            <iframe id="gameEmbed" scrolling="no" frameborder="0"></iframe>
-        </div>
-        <div class="game-info" id="gameInfo">
-            <h2 id="gameTitle"></h2>
-            <img id="gameImage" src="" alt="Game Image">
-            <p id="gameDescription"></p>
-        </div>
-    </div>
+    // When the Login button is clicked:
+    loginBtn.addEventListener('click', () => {
+      landingPage.style.display = 'none';         // Hide landing page
+      formContainer.style.display = 'block';        // Show form container
+      loginForm.style.display = 'block';            // Show login form
+      createAccountForm.style.display = 'none';     // Ensure create account form is hidden
+    });
 
-    <script>
-        function loadGame(gameId, title, description, imageUrl) {
-            // Update and show the Humble Bundle iframe
-            const iframe = document.getElementById('gameEmbed');
-            iframe.src = `https://www.humblebundle.com/widget/v2/product/${gameId}?theme=light`;
-            iframe.style.display = 'block'; 
-
-            // Update and show the game information
-            document.getElementById('gameTitle').innerText = title;
-            document.getElementById('gameDescription').innerText = description;
-            document.getElementById('gameImage').src = imageUrl;
-            document.getElementById('gameInfo').style.display = 'block';
-        }
-
-        // Check if the user is on a mobile device
-        if (window.innerWidth <= 800 || /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)) {
-            document.getElementById('mobileMessage').style.display = 'block';
-            document.getElementById('menuBar').classList.add('mobile-hidden'); // Hide menu bar on mobile
-        }
-    </script>
-
+    // When the Create Account button is clicked:
+    createAccountBtn.addEventListener('click', () => {
+      landingPage.style.display = 'none';         // Hide landing page
+      formContainer.style.display = 'block';        // Show form container
+      createAccountForm.style.display = 'block';    // Show create account form
+      loginForm.style.display = 'none';             // Ensure login form is hidden
+    });
+  </script>
 </body>
 </html>
