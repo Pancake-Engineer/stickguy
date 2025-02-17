@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pancake Engineer Store</title>
+    <style>
+        body {
+            background-color: gray;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            background-color: red;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            /*  */
+        }
+        .back-button {
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .back-button:hover {
+            background-color: #666;
+        }
+        .menu {
+            background-color: #222;
+            padding: 10px;
+            text-align: center;
+        }
+        .menu button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .menu button:hover {
+            background-color: #666;
+        }
+        .content-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 20px;
+            gap: 20px;
+        }
+        .game-container {
+            text-align: center;
+        }
+        iframe {
+            width: 526px;
+            height: 400px;
+            border: none;
+            display: none;
+        }
+        .game-info {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            width: 400px;
+            display: none;
+            border-radius: 10px;
+        }
+        .game-info img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .game-info h2 {
+            margin-top: 0;
+        }
+        .mobile-message {
+            background-color: #ffcc00;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none;
+        }
+        .mobile-hidden {
+            display: none;
+        }
+
+        p {
+            color: white;
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 800px) {
+            .back-button {
+                position: relative;
+                top: 10px;
+                left: 0;
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+                display: block;
+            }
+
+            .header {
+                padding-bottom: 40px; /* Add extra space to avoid overlap with the button */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <button class="back-button" onclick="window.location.href='https://www.pancakeengineer.xyz'">Go back to PancakeEngineer.xyz</button>
+        <h1>Pancake Engineer Store</h1>
+    </div>
+
+    <div class="mobile-message" id="mobileMessage">
+        <p>Please switch to a PC for a better shopping experience!</p>
+    </div>
+
+    <div class="menu" id="menuBar">
+        <p>Come back later when I release my first game!</p>
+        <!--<button onclick="loadGame('pizzaboy/cZS7Sv9Dq6', 'Pizzaboy', 'Run your very own Pizzashop inside of Pizzaboy by cooking pizzas to serve customers! Build and design your own Pizzashop to your own liking! The possibilites are endless!', '/Pizzaboy.png')">Pizzaboy</button> --!>
+        <!-- Add more games here -->
+    </div>
+
+    <div class="content-container">
+        <div class="game-container">
+            <iframe id="gameEmbed" scrolling="no" frameborder="0"></iframe>
+        </div>
+        <div class="game-info" id="gameInfo">
+            <h2 id="gameTitle"></h2>
+            <img id="gameImage" src="" alt="Game Image">
+            <p id="gameDescription"></p>
+        </div>
+    </div>
+
+    <script>
+        function loadGame(gameId, title, description, imageUrl) {
+            // Update and show the Humble Bundle iframe
+            const iframe = document.getElementById('gameEmbed');
+            iframe.src = `https://www.humblebundle.com/widget/v2/product/${gameId}?theme=light`;
+            iframe.style.display = 'block'; 
+
+            // Update and show the game information
+            document.getElementById('gameTitle').innerText = title;
+            document.getElementById('gameDescription').innerText = description;
+            document.getElementById('gameImage').src = imageUrl;
+            document.getElementById('gameInfo').style.display = 'block';
+        }
+
+        // Check if the user is on a mobile device
+        if (window.innerWidth <= 800 || /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)) {
+            document.getElementById('mobileMessage').style.display = 'block';
+            document.getElementById('menuBar').classList.add('mobile-hidden'); // Hide menu bar on mobile
+        }
+    </script>
+
+</body>
+</html>
